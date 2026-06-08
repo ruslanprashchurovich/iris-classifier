@@ -54,4 +54,4 @@ This project uses [Semantic Versioning](https://semver.org/):
 
 ---
 
-For detailed changes between versions, check the [commit history](https://github.com/yourusername/iris-classifier/commits/main).
+For detailed changes between versions, check the [commit history](https://github.com/ruslanprashchurovich/iris-classifier/commits/main).

@@ -7,7 +7,7 @@ Thank you for your interest in contributing to Iris Classifier! Here's how you c
 1. **Fork** the repository on GitHub
 2. **Clone** your fork locally:
    ```bash
-   git clone https://github.com/yourusername/iris-classifier.git
+   git clone https://github.com/ruslanprashchurovich/iris-classifier.git
    cd iris-classifier
    ```
 3. **Create a virtual environment**:

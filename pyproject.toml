@@ -45,9 +45,9 @@ dev = [
 ]
 
 [project.urls]
-Repository = "https://github.com/yourusername/iris-classifier"
-Issues = "https://github.com/yourusername/iris-classifier/issues"
-Documentation = "https://github.com/yourusername/iris-classifier/blob/main/docs/README.md"
+Repository = "https://github.com/ruslanprashchurovich/iris-classifier"
+Issues = "https://github.com/ruslanprashchurovich/iris-classifier/issues"
+Documentation = "https://github.com/ruslanprashchurovich/iris-classifier/blob/main/docs/README.md"
 
 [tool.black]
 line-length = 100

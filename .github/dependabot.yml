@@ -8,7 +8,7 @@ updates:
       time: "03:00"
     open-pull-requests-limit: 5
     reviewers:
-      - "yourusername"
+      - "ruslanprashchurovich"
     labels:
       - "dependencies"
     commit-message:
@@ -22,6 +22,6 @@ updates:
       day: "monday"
     open-pull-requests-limit: 5
     reviewers:
-      - "yourusername"
+      - "ruslanprashchurovich"
     labels:
       - "github-actions"

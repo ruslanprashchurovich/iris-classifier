@@ -188,6 +188,11 @@ pytest from the project root
 
 See [CONTRIBUTING.md](../CONTRIBUTING.md) for development guidelines.
 
+## Repository
+
+- **GitHub**: https://github.com/ruslanprashchurovich/iris-classifier
+- **Issues**: https://github.com/ruslanprashchurovich/iris-classifier/issues
+
 ## License
 
 MIT License - see [LICENSE](../LICENSE)
