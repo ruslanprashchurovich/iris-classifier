@@ -73,13 +73,100 @@ pip install -r requirements.txt
 pytest -q
 ```
 
-## 📓 Notebook Demo
-
-A demo notebook is available at `notebooks/demo.ipynb`. It trains the model, saves it, and shows sample predictions.
-
 ## 🛠️ Continuous Integration (GitHub Actions)
 
 A GitHub Actions workflow runs `pytest` on every push and pull request to `main`/`master`. The workflow is defined in `.github/workflows/ci.yml`.
+
+## 🏋️ Training Options
+
+The model uses `RandomForestClassifier` with a 75/25 train/test split on four features (sepal length/width, petal length/width) and three classes: Setosa (0), Versicolor (1), Virginica (2).
+
+```bash
+python -m src.train --n-estimators 100 --test-size 0.25 --output model.joblib
+```
+
+- `--n-estimators`: number of trees in the forest (default: 100)
+- `--test-size`: train/test split proportion (default: 0.25)
+- `--output`: path to save the model (default: `model.joblib`)
+
+## 🌐 API Reference
+
+Interactive docs: `http://localhost:8000/docs`
+
+**GET** `/health` — returns API status and model path:
+
+```json
+{ "status": "ok", "model": "model.joblib" }
+```
+
+**POST** `/predict` — predicts the class from flower measurements.
+
+Request:
+
+```json
+{ "sepal_length": 5.1, "sepal_width": 3.5, "petal_length": 1.4, "petal_width": 0.2 }
+```
+
+Response:
+
+```json
+{
+  "predicted_label": 0,
+  "predicted_class": "setosa",
+  "class_names": ["setosa", "versicolor", "virginica"]
+}
+```
+
+Production run:
+
+```bash
+python -m uvicorn src.api:app --host 0.0.0.0 --port 8000
+```
+
+## ⚙️ Configuration
+
+Configuration can be set via environment variables (see `.env.example`), command-line arguments, or Python code. Example `.env`:
+
+```
+MODEL_PATH=model.joblib
+API_PORT=8000
+N_ESTIMATORS=100
+```
+
+## 🩺 Troubleshooting
+
+- **"Model not found. Train model first..."** — run `python -m src.train`.
+- **"Address already in use"** — use a different port: `python -m uvicorn src.api:app --port 8001`.
+- **`ModuleNotFoundError: No module named 'src'` in tests** — run `pytest` from the project root (`tests/conftest.py` handles the path).
+
+## ⚡ Performance
+
+- Model training time: < 1 second
+- Single prediction time: < 1 ms
+- API response time: < 10 ms (typical)
+- Model file size: ~100 KB
+
+## 🗺️ Future Enhancements
+
+- [ ] MLflow integration for experiment tracking
+- [ ] Model versioning and registry
+- [ ] Advanced feature engineering
+- [ ] Batch prediction endpoint
+- [ ] Web UI dashboard
+- [ ] Kubernetes deployment configs
+
+## 🤝 Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development guidelines.
+
+## 🔗 Repository
+
+- GitHub: https://github.com/ruslanprashchurovich/iris-classifier
+- Issues: https://github.com/ruslanprashchurovich/iris-classifier/issues
+
+## 📄 License
+
+MIT License — see [LICENSE](LICENSE)
 
 ---
 
