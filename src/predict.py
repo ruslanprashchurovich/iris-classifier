@@ -7,6 +7,7 @@ import pathlib
 
 import numpy as np
 
+from .config import settings
 from .model import load_model
 
 
@@ -15,7 +16,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--model",
         type=pathlib.Path,
-        default=pathlib.Path("model.joblib"),
+        default=pathlib.Path(settings.model_path),
         help="Path to the trained model file",
     )
     parser.add_argument(

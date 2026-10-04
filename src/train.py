@@ -8,6 +8,7 @@ import pathlib
 import pandas as pd
 from sklearn.datasets import load_iris
 
+from .config import settings
 from .model import train_and_evaluate, save_model
 
 
@@ -16,19 +17,19 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--output",
         type=pathlib.Path,
-        default=pathlib.Path("model.joblib"),
+        default=pathlib.Path(settings.model_path),
         help="Where to write the trained model",
     )
     parser.add_argument(
         "--n-estimators",
         type=int,
-        default=100,
+        default=settings.n_estimators,
         help="Number of trees in the forest",
     )
     parser.add_argument(
         "--test-size",
         type=float,
-        default=0.25,
+        default=settings.test_size,
         help="Proportion of the dataset to use for evaluation",
     )
     return parser.parse_args()
@@ -44,7 +45,9 @@ def main() -> None:
     y = df["target"].to_numpy()
 
     model, metrics = train_and_evaluate(
-        X, y, test_size=args.test_size, n_estimators=args.n_estimators
+        X, y, test_size=args.test_size,
+        random_state=settings.random_state,
+        n_estimators=args.n_estimators,
     )
 
     save_model(model, args.output)

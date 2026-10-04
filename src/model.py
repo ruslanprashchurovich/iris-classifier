@@ -8,8 +8,8 @@ from typing import Any
 import joblib
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, classification_report
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report, accuracy_score
 
 
 def train_and_evaluate(
@@ -32,7 +32,9 @@ def train_and_evaluate(
 
     metrics = {
         "accuracy": float(accuracy_score(y_test, y_pred)),
-        "classification_report": classification_report(y_test, y_pred, output_dict=True),
+        "classification_report": classification_report(
+            y_test, y_pred, output_dict=True
+        ),
     }
     return model, metrics
 
