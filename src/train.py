@@ -9,7 +9,7 @@ import pandas as pd
 from sklearn.datasets import load_iris
 
 from .config import settings
-from .model import train_and_evaluate, save_model
+from .model import save_model, train_and_evaluate
 
 
 def parse_args() -> argparse.Namespace:
@@ -45,7 +45,9 @@ def main() -> None:
     y = df["target"].to_numpy()
 
     model, metrics = train_and_evaluate(
-        X, y, test_size=args.test_size,
+        X,
+        y,
+        test_size=args.test_size,
         random_state=settings.random_state,
         n_estimators=args.n_estimators,
     )
